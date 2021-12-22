@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websajtika
+  labels:
+    app: websajtika
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websajtika
+  template:
+    metadata:
+      labels:
+        app: websajtika
+    spec:
+      containers:
+        - name: websajtika
+          image: programerikadh/websajtika
+          ports:
+            - containerPort: 3000

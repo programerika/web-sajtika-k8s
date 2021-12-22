@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webgejmikaback
+  labels:
+    app: webgejmikaback
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webgejmikaback
+  template:
+    metadata:
+      labels:
+        app: webgejmikaback
+    spec:
+      containers:
+        - name: webgejmikaback
+          image: programerikadh/webgejmikabackarm
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URI
+              value: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@192.168.1.88:27017,192.168.1.89:27017,192.168.1.90:27017/webGejmikaDB?authSource=admin&replicaSet=replica01"
+            - name: MIN_SCORE
+              value: '8'
+            - name: MAX_SCORE
+              value: '21'
+            - name: TOP_SCORE_PLAYERS_LIMIT
+              value: '10'
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: mongodb-username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-creds
+                  key: mongodb-password
