@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: websajtika
-          image: programerikadh/websajtika:1.0.1
+          image: programerikadh/websajtika:1.0.2
           ports:
             - containerPort: 3000
