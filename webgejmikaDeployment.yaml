@@ -16,18 +16,22 @@ spec:
     spec:
       containers:
         - name: webgejmikaback
-          image: programerikadh/webgejmikaback:1.0.0
+          image: programerikadh/webgejmikaback:1.1.0
           ports:
             - containerPort: 8080
           env:
             - name: MONGO_URI
               value: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@192.168.1.88:27017,192.168.1.89:27017,192.168.1.90:27017/webGejmikaDB?authSource=admin&replicaSet=replica01"
-            - name: MIN_SCORE
+            - name: MIN_SCORE_GEJMIKA
               value: '8'
-            - name: MAX_SCORE
+            - name: MAX_SCORE_GEJMIKA
               value: '21'
             - name: TOP_SCORE_PLAYERS_LIMIT
               value: '10'
+            - name: MIN_SCORE_BOMBIKA
+              value: '1'
+            - name: MAX_SCORE_BOMBIKA
+              value: '100'
             - name: MONGODB_USERNAME
               valueFrom:
                 secretKeyRef:
