@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: website2025
-          image: programerikadh/programerika_website_2025:1.0.0
+          image: programerikadh/programerika_website_2025:1.0.2
           ports:
             - containerPort: 3000
