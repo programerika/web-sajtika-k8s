@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: websajtikaingress
+  name: websiteingress
+  namespace: programerika
   annotations:     
     cert-manager.io/issuer: "letsencrypt-prod"
     acme.cert-manager.io/http01-edit-in-place: "true"
@@ -11,7 +12,7 @@ spec:
     - hosts:
       - programerika.com
       - www.programerika.com
-      secretName: websajtika-prod-tls
+      secretName: website2025-prod-tls
   rules:
   - host: www.programerika.com
     http:
@@ -20,16 +21,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: websajtika
+            name: website2025
             port:
               number: 3000
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: webgejmikaback
-            port:
-              number: 8080
   - host: programerika.com
     http:
       paths:
@@ -37,13 +31,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: websajtika
+            name: website2025
             port:
               number: 3000
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: webgejmikaback
-            port:
-              number: 8080

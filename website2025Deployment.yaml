@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website2025
+  namespace: programerika
+  labels:
+    app: website2025
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website2025
+  template:
+    metadata:
+      labels:
+        app: website2025
+    spec:
+      containers:
+        - name: website2025
+          image: programerikadh/programerika_website_2025:1.0.0
+          ports:
+            - containerPort: 3000
